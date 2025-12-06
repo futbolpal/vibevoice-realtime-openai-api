@@ -18,9 +18,9 @@ OpenAI-compatible TTS API wrapping [VibeVoice-Realtime-0.5B](https://huggingface
 
 ## Requirements
 
-- Python 3.13 / Docker with NVIDIA GPU support
+- Python 3.13 (via uv) / Docker with NVIDIA GPU support
 - NVIDIA GPU with CUDA 13.x
-- ffmpeg (auto-installed in Docker)
+- ffmpeg
 
 ---
 
@@ -57,6 +57,8 @@ Requires Python 3.13 and NVIDIA GPU with CUDA 13.x drivers.
 ### Windows
 
 ```powershell
+winget install --id Gyan.FFmpeg
+
 git clone https://github.com/marhensa/vibevoice-realtime-openai-api.git
 cd vibevoice-realtime-openai-api
 
@@ -77,6 +79,8 @@ python vibevoice_realtime_openai_api.py --port 8880
 ### Linux
 
 ```bash
+sudo apt install ffmpeg
+
 git clone https://github.com/marhensa/vibevoice-realtime-openai-api.git
 cd vibevoice-realtime-openai-api
 
