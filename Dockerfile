@@ -44,6 +44,7 @@ RUN /home/ubuntu/.local/bin/uv python install 3.13
 COPY --chown=ubuntu:ubuntu requirements.txt .
 COPY --chown=ubuntu:ubuntu prebuilt-wheels/apex-*.whl ./prebuilt-wheels/
 COPY --chown=ubuntu:ubuntu vibevoice_realtime_openai_api.py .
+COPY --chown=ubuntu:ubuntu entrypoint.sh .
 
 # Download flash-attn from prebuild repo (keep original filename with version)
 RUN curl -L -o prebuilt-wheels/flash_attn-2.8.3+cu130torch2.9-cp313-cp313-linux_x86_64.whl \
@@ -58,6 +59,9 @@ RUN /home/ubuntu/.local/bin/uv venv .venv --python 3.13 --seed && \
     rm -rf ./prebuilt-wheels && \
     /home/ubuntu/.local/bin/uv cache clean
 
+# Make entrypoint executable
+RUN chmod +x entrypoint.sh
+
 # App environment
 ENV OPTIMIZE_FOR_SPEED=1
 ENV MODELS_DIR=/home/ubuntu/app/models
@@ -67,4 +71,4 @@ VOLUME /home/ubuntu/app/models
 
 EXPOSE 8880
 
-CMD [".venv/bin/python", "vibevoice_realtime_openai_api.py", "--port", "8880"]
+CMD ["./entrypoint.sh"]
