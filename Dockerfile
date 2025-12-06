@@ -45,14 +45,15 @@ COPY --chown=ubuntu:ubuntu requirements.txt .
 COPY --chown=ubuntu:ubuntu prebuilt-wheels/apex-*.whl ./prebuilt-wheels/
 COPY --chown=ubuntu:ubuntu vibevoice_realtime_openai_api.py .
 
-# Download flash-attn from prebuild repo
-RUN curl -L -o prebuilt-wheels/flash_attn.whl "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.5.2/flash_attn-2.8.3%2Bcu130torch2.9-cp313-cp313-linux_x86_64.whl"
+# Download flash-attn from prebuild repo (keep original filename with version)
+RUN curl -L -o prebuilt-wheels/flash_attn-2.8.3+cu130torch2.9-cp313-cp313-linux_x86_64.whl \
+  "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.5.2/flash_attn-2.8.3%2Bcu130torch2.9-cp313-cp313-linux_x86_64.whl"
 
 # Create venv and install deps
 RUN /home/ubuntu/.local/bin/uv venv .venv --python 3.13 --seed && \
     . .venv/bin/activate && \
     /home/ubuntu/.local/bin/uv pip install -r requirements.txt && \
-    /home/ubuntu/.local/bin/uv pip install ./prebuilt-wheels/flash_attn.whl && \
+    /home/ubuntu/.local/bin/uv pip install ./prebuilt-wheels/flash_attn-*.whl && \
     /home/ubuntu/.local/bin/uv pip install ./prebuilt-wheels/apex-*.whl && \
     rm -rf ./prebuilt-wheels && \
     /home/ubuntu/.local/bin/uv cache clean

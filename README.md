@@ -95,9 +95,9 @@ source .venv/bin/activate
 uv pip install -r requirements.txt
 
 # Download and install prebuilt Flash Attention
-curl -L -o ./prebuilt-wheels/flash_attn.whl \
+curl -L -o ./prebuilt-wheels/flash_attn-2.8.3+cu130torch2.9-cp313-cp313-linux_x86_64.whl \
   "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.5.2/flash_attn-2.8.3%2Bcu130torch2.9-cp313-cp313-linux_x86_64.whl"
-uv pip install ./prebuilt-wheels/flash_attn.whl
+uv pip install ./prebuilt-wheels/flash_attn-*.whl
 
 # Install prebuilt APEX
 uv pip install ./prebuilt-wheels/apex-*.whl
