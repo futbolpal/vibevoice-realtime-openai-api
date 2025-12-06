@@ -54,28 +54,48 @@ First run downloads models (~2GB) and voice presets (~22MB) to `./models/`.
 
 Requires Python 3.13 and NVIDIA GPU with CUDA 13.x drivers.
 
+### Windows
+
+```powershell
+git clone https://github.com/marhensa/vibevoice-realtime-openai-api.git
+cd vibevoice-realtime-openai-api
+
+# Install uv
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# Create venv
+uv venv .venv --python 3.13 --seed
+.venv\Scripts\activate
+
+# Install dependencies
+uv pip install -r requirements.txt
+
+# Run (Flash Attention and APEX are Linux-only, uses SDPA fallback on Windows)
+$env:OPTIMIZE_FOR_SPEED=1; python vibevoice_realtime_openai_api.py --port 8880
+```
+
+### Linux
+
 ```bash
 git clone https://github.com/marhensa/vibevoice-realtime-openai-api.git
 cd vibevoice-realtime-openai-api
 
 # Install uv
-powershell -ExecutionPolicy ByPass -c `
-  "irm https://astral.sh/uv/install.ps1 | iex" # Windows
-# curl -LsSf https://astral.sh/uv/install.sh | sh # Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Create venv
 uv venv .venv --python 3.13 --seed
-.venv\Scripts\activate  # Windows
-# source .venv/bin/activate  # Linux
+source .venv/bin/activate
 
 # Install dependencies
 uv pip install -r requirements.txt
 
-# Download and install prebuilt Flash Attention (Linux only)
-curl -L -o ./prebuilt-wheels/flash_attn.whl "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.5.2/flash_attn-2.8.3%2Bcu130torch2.9-cp313-cp313-linux_x86_64.whl"
+# Download and install prebuilt Flash Attention
+curl -L -o ./prebuilt-wheels/flash_attn.whl \
+  "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.5.2/flash_attn-2.8.3%2Bcu130torch2.9-cp313-cp313-linux_x86_64.whl"
 uv pip install ./prebuilt-wheels/flash_attn.whl
 
-# Install prebuilt APEX (Linux only)
+# Install prebuilt APEX
 uv pip install ./prebuilt-wheels/apex-*.whl
 
 # Run
