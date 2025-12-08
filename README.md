@@ -17,7 +17,7 @@ OpenAI-compatible TTS API wrapping [VibeVoice-Realtime-0.5B](https://huggingface
   - `/v1/audio/voices`
   - `/v1/audio/models`
   - Can be used on many OpenAI API-compatible drop-in endpoint.
-- ⚡ **Real-time Performance** - **~1x RTF** (Real-Time Factor) on an **RTX 3060**.
+- ⚡ **Real-time Performance** - **~0.5x RTF** (Real-Time Factor) on an **RTX 3060**.
 - 🚀 **GPU Accelerated** - Requiring **only ~2GB of VRAM**, CUDA with Flash Attention (Docker) or SDPA
 - 🔊 **7 Voices** - With OpenAI voice name aliases (alloy, nova, etc.)
 - 🎵 **Multiple Formats** - MP3, WAV, OPUS, FLAC, AAC, PCM
