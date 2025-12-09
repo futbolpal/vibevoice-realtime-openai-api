@@ -50,7 +50,7 @@ SAMPLE_RATE = 24000
 DEFAULT_MODEL_PATH = "microsoft/VibeVoice-Realtime-0.5B"
 
 # CFG scale for generation (configurable via env var)
-CFG_SCALE = float(os.environ.get("CFG_SCALE", "1.5"))
+CFG_SCALE = float(os.environ.get("CFG_SCALE", "1.25"))
 
 # Voices directory
 VOICES_DIR = MODELS_DIR / "voices"

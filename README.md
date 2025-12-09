@@ -185,7 +185,7 @@ curl -X POST http://localhost:8880/v1/audio/speech \
 |----------|---------|-------------|
 | `MODELS_DIR` | `./models` | Path to models directory |
 | `VIBEVOICE_DEVICE` | `cuda` | Device: `cuda` (NVIDIA GPUs), `cpu`, or `mps` (Apple Silicon GPUs) |
-| `CFG_SCALE` | `1.5` | CFG guidance scale (0.0-3.0, higher = more expressive) |
+| `CFG_SCALE` | `1.25` | CFG guidance scale (0.0-3.0, higher = more expressive) |
 | `OPTIMIZE_FOR_SPEED` | `1` (Docker) | Set to `1` to suppress APEX warnings |
 
 ## License
