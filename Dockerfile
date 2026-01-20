@@ -22,8 +22,7 @@ WORKDIR /home/ubuntu/app
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Append to .bashrc (for interactive sessions)
-RUN cat >> /home/ubuntu/.bashrc << 'EOF'
-
+RUN cat >> /home/ubuntu/.bashrc <<EOF
 # Environment setup
 export CUDA_HOME=/usr/local/cuda
 export PATH=$CUDA_HOME/bin:$HOME/.local/bin:$PATH
